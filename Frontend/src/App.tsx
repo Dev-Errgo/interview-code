@@ -10,21 +10,22 @@ export default function App() {
         /**
          * TODO: Complete method to allow sidebar visibility state to be toggled
          */
+        setSidebarVisible(prev => !prev); // Toggles the boolean state
     };
 
     return (
         <div className="flex flex-col h-screen bg-white overflow-hidden">
-            {/** 
+            {/**
              * TODO: Fix this navbar by adding the appropriate props
              */}
-            <TopNavbar />
-            
+            <TopNavbar toggleSidebar={toggleSidebar} /> {/* Pass the toggleSidebar function as a prop */}
+
             <div className="flex flex-1 overflow-hidden">
                 <div className={`transition-all duration-300 ${sidebarVisible ? 'w-64' : 'w-0'} flex-shrink-0 overflow-hidden`}>
                     <Sidebar visible={sidebarVisible} />
                 </div>
                 <Outlet />
-            </div>  
+            </div>
         </div>
     );
 }

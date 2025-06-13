@@ -11,7 +11,7 @@ const TopNavbar: React.FC<TopNavbarProps> = ({ toggleSidebar }) => {
     <div className="h-14 border-b border-blue-300 flex items-center justify-between px-4 bg-gray-100">
       {/* Left section with logo and toggle */}
       <div className="flex items-center">
-       
+
         <div className="mr-4">
           <div className="w-0 h-0
                          border-l-8 border-l-transparent
@@ -26,15 +26,16 @@ const TopNavbar: React.FC<TopNavbarProps> = ({ toggleSidebar }) => {
             </div>
         {/* Sidebar toggle button */}
         <button
-        // TODO: Fix this button button by adding the appropriate onClick behavior to toggle the sidebar
-          className="p-10 rounded transition-colors"
+          // TODO: Fix this button button by adding the appropriate onClick behavior to toggle the sidebar
+          onClick={toggleSidebar} // This is the fix: call toggleSidebar when clicked
+          className="p-2 rounded transition-colors hover:bg-gray-200" // Adjusted padding and added hover for better UX
         >
           <Menu className="h-5 w-5 text-gray-700" />
         </button>
       </div>
-     
+
       {/* Search bar */}
-      <div className="flex-1 max-w-2xl mx-4 bg-b">
+      <div className="flex-1 max-w-2xl mx-4"> {/* Removed redundant bg-b, likely a typo */}
         <div className="relative">
           <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
             <Search className="h-4 w-4 text-gray-400" />
@@ -46,7 +47,7 @@ const TopNavbar: React.FC<TopNavbarProps> = ({ toggleSidebar }) => {
           />
         </div>
       </div>
-     
+
       {/* Right section with notifications */}
       <div className="flex items-center space-x-4">
         <button className="p-1 rounded hover:bg-gray-100">
