@@ -1,4 +1,28 @@
-# Errgo Code Assessment
+# Name: Chandra Sekhar Dutta
+# R.No: RA2211032020010
+# Email: Chandrasekhardutta3@gmail.com , cd6071@srmist.edu.in
+# College: SRM Institute of Science and Technology
+# Description: Made changes in TODOS in frontend and backend. 
+## Frontend changes
+- added setSidebarVisible() in toggleSidebar(), added props in TopNavbar and made changes in TopNavbar.tsx.
+- Added the line - { index: true, element: <Navigate to="/project" /> } in main.tsx 
+- Updated onSubmit() in ProjectPage.tsx   
+
+## Backend Changes
+- First JSON is parsed
+- Response is pushed in the list
+
+## Bonus Challange 
+- made a cross-platform chatting application using websocket 
+- imported websocket
+- Made object of Websocket and which is running on my local lan IP, if you want to test, replace the IP address with your local device IP address in the ChatPage of the frontend
+
+
+
+
+
+
+## Errgo Code Assessment
 This repo contains two directories:
 1. Backend
 2. Frontend

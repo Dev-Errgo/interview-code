@@ -1,18 +1,14 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import type { IProject } from "../models/ProjectModels";
+import { getProjects } from "../controller/ProjectController";
 
 const ProjectDetailsPage = () => {
-    // TODO: Update this to useState
-    const projects: IProject[] | [] = [];
+    const [projects, setProjects] = useState<IProject[]>([]);
 
-    /**
-     * Fetch all the projects on load
-     */
     useEffect(() => {
-        const initProjects = async() => {
-            /**
-             * TODO: Complete method to pull project details by calling `getProjects` from ProjectController.ts
-             */
+        const initProjects = async () => {
+            const result = await getProjects();
+            setProjects(result);
         }
 
         initProjects();
@@ -21,7 +17,6 @@ const ProjectDetailsPage = () => {
   return (
     <div className="flex flex-col flex-1">
 
-        {/* Main content area */}
         {projects.length > 0 && 
             projects.map((project : IProject) => {
                 return (
@@ -42,10 +37,9 @@ const ProjectDetailsPage = () => {
                                 
                                 <div className="flex-grow">
                                 <div className="text-xs text-gray-500">Project Name</div>
-                                <div className="font-medium">{/* TODO: Show project name */}</div>
+                                <div className="font-medium">{project.name}</div>
                                 </div>
                                 
-                                {/* Dummy Button */}
                                 <button className="bg-purple-600 text-white rounded px-4 py-2 text-sm">
                                     Explore Project
                                 </button>
@@ -53,12 +47,10 @@ const ProjectDetailsPage = () => {
                             
                             <div className="mb-6">
                                 <div className="text-xs text-gray-500">Description</div>
-                                <div className="text-sm">{/* TODO: Show project description */}</div>
+                                <div className="text-sm">{project.description}</div>
                             </div>
                             
-                            {/* Share Button */}
                             <div className="flex justify-end mt-4">
-                                {/* Dummy Button */}
                                 <button className="bg-gray-300 hover:bg-gray-400 text-gray-800 rounded px-4 py-2 text-sm flex items-center">
                                     Share
                                     <svg 

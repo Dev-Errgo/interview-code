@@ -10,6 +10,7 @@ export default function App() {
         /**
          * TODO: Complete method to allow sidebar visibility state to be toggled
          */
+         setSidebarVisible(prev => !prev);
     };
 
     return (
@@ -17,7 +18,7 @@ export default function App() {
             {/** 
              * TODO: Fix this navbar by adding the appropriate props
              */}
-            <TopNavbar />
+            <TopNavbar  toggleSidebar={toggleSidebar}/>
             
             <div className="flex flex-1 overflow-hidden">
                 <div className={`transition-all duration-300 ${sidebarVisible ? 'w-64' : 'w-0'} flex-shrink-0 overflow-hidden`}>
