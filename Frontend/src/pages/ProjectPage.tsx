@@ -1,6 +1,7 @@
 import React, { useState, type FormEvent } from 'react';
 import { Eye, FileText } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { createProject } from '../controller/ProjectController';
 export const ProjectPage: React.FC = () => {
   const [projectName, setProjectName] = useState<string>("");
   const [projectDescription, setProjectDescription] = useState<string>("");
@@ -12,18 +13,29 @@ export const ProjectPage: React.FC = () => {
    * @param event The form event
    */
   const onSubmit = (event: FormEvent<HTMLFormElement>): void => {
-    /**
-     * TODO:
-     * Complete the method by calling the `createProject() method in ProjectController.ts`
-     * After creating project, verify that the server response is 200 before alerting the user and redirecting to the '/project-details' page
-     * 
-     * BONUS - Add simple validation to the form inputs to not allow empty string and display an error alert
-     */
-    // alert("Successfully created project");
-    // navigate('/project-details');
-
     event.preventDefault();
+
+    if (projectName.trim() === "" || projectDescription.trim() === "") {
+      alert("Project name and description cannot be empty.");
+      return;
+    }
+
+    const projectData = {
+      name: projectName,
+      description: projectDescription
+    };
+
+    createProject(projectData)
+      .then((response) => {
+        alert("Successfully created project");
+        navigate('/project-details');
+      })
+      .catch((error) => {
+        console.error("Error creating project:", error);
+        alert("An error occurred while creating the project.");
+      });
   }
+
 
   return (
     <div className="flex-1 flex flex-col overflow-auto">
@@ -41,7 +53,7 @@ export const ProjectPage: React.FC = () => {
               <div className="bg-gray-100 rounded-md p-3 flex items-center justify-between">
                 <div className="w-full">
                   <label className="block text-sm font-medium text-gray-700">Project Name</label>
-                  <input type="text" className="bg-transparent w-full border-none focus:outline-none" value={projectName} onChange={(e) => setProjectName(e.target.value)}/>
+                  <input type="text" className="bg-transparent w-full border-none focus:outline-none" value={projectName} onChange={(e) => setProjectName(e.target.value)} />
                 </div>
                 <Eye className="h-5 w-5 text-gray-500" />
               </div>
